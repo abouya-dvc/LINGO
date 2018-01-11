@@ -46,7 +46,11 @@ class View
 	    	var element = document.getElementById('letter_'+currentRowNr+'-0');
 	    	element.value = firstLetter;
 	    	element.setAttribute('style','background-color:red')
+	    	element.setAttribute('disabled','')
     }
+    
+   
+    
     
     /**
      * 
@@ -54,28 +58,25 @@ class View
      */
     presentLetters(array)
     {
-    	  var kleur='';
+    	  var color='';
     	  
     	  for(var i=0; i<array.length; i++){
     		  
     		  if(array[i]){
     			  
     			  for(var c=1; c<array[i].length; c++){
-    				  kleur += array[i][c];
+    				  color += array[i][c];
     			  }
-    			  
-    			  document.getElementById('letter_'+this.currentRow+'-'+i).setAttribute('style','background-color:'+kleur+'');
-    			  document.getElementById('letter_'+this.currentRow+'-'+i).value = array[i][0];
-    			  
-    			  kleur = '';
-    			  
+	    			  document.getElementById('letter_'+this.currentRow+'-'+i).setAttribute('style','background-color:'+color+'');
+	    			  document.getElementById('letter_'+this.currentRow+'-'+i).value = array[i][0];
+	    			  if(color === 'RED') document.getElementById('letter_'+this.currentRow+'-'+i).setAttribute('disabled','');
+	    				  color = '';
     		  }else{
     			// do noting
     		  }
     	  }
     }
 
-    
 	/**
 	 * Gets the letters separate that's typed in HTML by the user on the lingoboard en paste it as a whole word.
 	 * return {string} typedWord

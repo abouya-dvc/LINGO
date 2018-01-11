@@ -1,10 +1,29 @@
 class Checker
 {
+	
+	
+	
+	
+	
 	constructor(length)
 	{
 		this.correctLetterArray 	= new Array(length);
+
+		this.sound = 	{
+							soundCorrect 		: 'SOUND/soundCorrect.mp3' ,
+							soundAlmostCorrect 	: 'SOUND/soundAlmostCorrect.mp3' ,
+							soundForlosers 		: 'SOUND/soundForlosers.mp3' ,
+							soundGameOver 		: 'SOUND/soundGameOver.mp3',
+							SoundWon 			: 'SOUND/soundWon1.mp3'
+						};
 		//this.containdLetterArray 	= new Array((length-1));
 	}
+	
+	playAudio(file)
+    {
+    	var audio = new Audio(file);
+    	audio.play();
+    }
 	
 	/**
 	 * check the typed word if eque whit random selected word by computer
@@ -15,7 +34,8 @@ class Checker
 	checkCompleteWord(typedWord, selectedWord)
 	{
 		if(typedWord === selectedWord){
-			return true
+			this.playAudio(this.sound.SoundWon)
+			return true;
 		}else return false;
 	}
 	
@@ -30,12 +50,11 @@ class Checker
 		for(var i=0; i<selectedWord.length; i++){
 			
 			if(selectedWord[i] === typedWord[i]){
-				this.correctLetterArray[i] = typedWord[i]+'RED';
+				
+				this.correctLetterArray[i] = typedWord[i]+'RED'
 			}
 			else if(selectedWord.includes(typedWord[i], i) ){
-				
 				this.checkContainsLetter(typedWord, selectedWord, i)
-				
 			}else{
 				
 			}
